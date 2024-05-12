@@ -1,21 +1,7 @@
 <template>
   <div id="app">
     <form>
-      <div>
-        <label>Título de la tarjeta: </label>
-        <input v-model="registro.nomTarjeta">
-      </div>
-
-      <div>
-        <label>Chip SRC: </label>
-        <input />
-      </div>
-
-      <div>
-        <label>Número: </label>
-        <input v-model="registro.numeroTarjeta">
-      </div>
-
+      
       <div>
         <label>Fecha de expiración: </label>
         <input v-model="registro.fechaExp">
@@ -36,6 +22,7 @@
           <option value="Visa">Visa</option>
         </select>
       </div>
+      <label>Número: </label>
       <button class="btn" @click="generarNumero()">
         Generar número de tarjeta
       </button>
@@ -93,6 +80,7 @@ export default {
       }
     },
     generarNumero: function () {
+      event.preventDefault();
       this.registro.numeroTarjeta = Math.floor(
         Math.random() * (599999999999 - 300000000000) + 300000000000
       );
@@ -113,12 +101,14 @@ export default {
 
 #app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 60vh;
   font-size: 10px;
   font-family: sans-serif;
   gap: 60px;
+  margin-top: 40px
 }
 
 form {
@@ -129,7 +119,7 @@ form {
   font-weight: bold;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
 }
 
@@ -155,6 +145,15 @@ form div label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.btn{
+  background-color: rgb(40, 40, 41);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
 }
 
 h3 {
